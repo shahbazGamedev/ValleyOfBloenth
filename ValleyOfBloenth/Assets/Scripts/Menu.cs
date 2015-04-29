@@ -7,7 +7,6 @@ public class Menu : MonoBehaviour {
     public Button quitBtn;
 
     Animator anim;
-    bool wait;//want to set load level to go after animations
     void Awake()
     {
         //setting up animator and buttons
@@ -15,16 +14,13 @@ public class Menu : MonoBehaviour {
         playBtn.onClick.AddListener(() => { ButtonClicked(0); });
         quitBtn.onClick.AddListener(() => { ButtonClicked(1); });
     }
-
+    //load levels or quit based on button clicked
     private void ButtonClicked(int btn)
     {
         switch (btn)
         {
             case 0:
-                anim.SetTrigger("Play");
-                Debug.Log("Play Animations");
-                //want to set load level to go after animations
-                Application.LoadLevel(1);
+                StartCoroutine("LoadingLevels");
                 break;
             case 1:
                 Application.Quit();
@@ -33,6 +29,13 @@ public class Menu : MonoBehaviour {
                 Debug.Log("Btn clicked Nope");
                 break;
         }
+    }
+    //wait for animations before loading new level
+    IEnumerator LoadingLevels()
+    {
+        anim.SetTrigger("Play");
+        yield return new WaitForSeconds(.5f);
+        Application.LoadLevel(1);
     }
 
 }
