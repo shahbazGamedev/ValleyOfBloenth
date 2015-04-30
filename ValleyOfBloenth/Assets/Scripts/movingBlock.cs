@@ -6,7 +6,7 @@ public class movingBlock : MonoBehaviour {
     Vector3 nextPos;
     Vector3 stopped = new Vector3(0, 0, 0);
     Rigidbody _rigidbody;
-    int moveSpeed = 50;
+    int moveSpeed = 100;
     bool down;
 
     void Start()
@@ -14,7 +14,7 @@ public class movingBlock : MonoBehaviour {
         _rigidbody = GetComponent<Rigidbody>();
         startingPos = transform.position;
         //Debug.Log("start: " + startingPos);
-        nextPos = new Vector3(startingPos.x, 6f, startingPos.z);
+        nextPos = new Vector3(startingPos.x, 4.9f, startingPos.z);
         //Debug.Log("next: " + nextPos);
     }
 

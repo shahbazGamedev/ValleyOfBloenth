@@ -53,7 +53,7 @@ public class Creatures : MonoBehaviour {
 
     //Death called when health is zero
     protected virtual void Death()
-    {
+    {        
         Destroy(gameObject);
     }
 

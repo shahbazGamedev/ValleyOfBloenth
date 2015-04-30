@@ -47,8 +47,10 @@ public class Player : Creatures {
         }
         if (other.collider.tag == "exit")
         {
+            
             if (Application.loadedLevel + 1 <= lastLevel)
             {
+                GameManager.lastLevel = Application.loadedLevel + 1;
                 Application.LoadLevel(Application.loadedLevel + 1);
             }
             else
@@ -70,6 +72,7 @@ public class Player : Creatures {
                 GameManager.powerUp = "Jump Boost";
                 break;
             case "speedBoost":
+                Destroy(other.gameObject);
                 GameManager.powerUp = "Speed Boost";
                 moveSpeed += 3;
                 jumpHight = startingJump;
@@ -79,11 +82,17 @@ public class Player : Creatures {
                 GameManager.coins += 1;
                 break;
             case "death":
+                Death();
                 GameManager.playing = false;
                 break;
             default:
                 break;
         }
         
+    }
+    protected override void Death()
+    {
+        GameManager.powerUp = null;
+        base.Death();
     }
 }

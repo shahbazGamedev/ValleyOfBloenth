@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
     public static bool playing = true;
     public static int coins = 0;
     public static string powerUp;
+    public static int lastLevel = 1;
     public Text coinText;
     public Text boostText;
 
